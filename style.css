@@ -1,0 +1,214 @@
+@charset "UTF-8";
+
+:root{
+    --cor1: #464fce;
+    --cor2: #f10048;;
+    --cor3: #fcfbdf;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color:#0d0e24;
+}
+body{
+    display: grid;
+    grid-template-rows: 100px repeat(3, max-content) 200px;
+    grid-template-columns: minmax(0px, 210px) 1fr;
+    grid-template-areas: "header header"
+                         "menu menu"
+                         "main main"
+                         "aside aside"
+                         "footer footer";
+}
+header{
+    grid-area: header;
+    background-color:  var(--cor1);
+    color: #fcfbdf;
+    height: 100px;
+    padding: 25px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+h1{
+    display: flex;
+    align-items: center;
+}
+nav{
+    grid-area: menu;
+    width: 100%;
+}
+#options{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+.price-range-mobile-div{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #434468;
+    margin: auto;
+}
+.price-range-mobile-div label{
+    display: flex;
+    align-items: center;
+    color: var(--cor3);
+} 
+#options a{
+    color:#fcfbdf;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    background-color: #585a8b;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in;
+}
+#options a:hover{
+    background-color: #9188b6;
+}
+.div-search{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 40%;
+}
+.div-search input{
+    border-style: none;
+    color: #0d0e24;
+    height: 32px;
+    width: 50%;
+    border-radius: 15px 0px 0px 15px;
+}
+#search-icon{
+    display: inline-block;
+    font-size: 1.4em;
+    padding: 6px;
+    width: 40px;
+    border-radius: 0px 15px 15px 0px;
+    background-color: #21234b;
+    transition: background-color 0.2s linear;
+}
+#search-icon:active{
+    background-color: #585a8b;
+}
+#search-icon:hover{
+    cursor: pointer;
+}
+.hamburger-menu{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    background-color: #21234b;
+    color: var(--cor3);
+    width: 100%;
+    height: 40px;
+    text-align: center;
+}
+.btn{
+    text-decoration: none;
+    border-style: none;
+    background-color: #21234b;
+    padding: 8px;
+    border-radius: 3px;
+    color:#fcfbdf ;
+    transition: background-color 0.2s linear;
+}
+.btn-red{
+    background-color: #f10048;
+}
+.btn:active{
+    background-color: #ebeb91;
+}
+main{
+    grid-area: main;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-items: center;
+    
+    align-items: flex-start;
+    background-color: #0d0e24;
+    width: 100%;
+}
+.product{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    background-color: #fcfbdf;;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+}
+.product img{
+    max-width: 150px;
+    border: solid 1px #f10048;
+    border-radius: 5px;
+}
+.product-description{
+    text-align: left;
+    margin: 5px;
+}
+.product-description div,.product-description p, .product-description h3 {
+    margin: 8px;
+}
+aside{
+    display: none;
+    grid-area: aside;
+    background-color: var(--cor3);
+    padding: 20px;
+}
+aside li{
+    margin: 15px;
+    list-style: none;
+}
+aside h2{
+    margin-bottom: 20px;
+}
+footer{
+    grid-area: footer;
+    background-color: #383946;
+    padding: 20px;
+    color:#fcfbdf;
+}
+@media screen and (min-width: 600px) {
+    body{
+        grid-template-areas: "header header"
+                             "menu menu"
+                             "aside main"
+                             "aside main"
+                             "footer footer";
+    }
+    main{
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        padding: 5px;
+    }
+    .hamburger-menu{
+        display: none;
+    }
+    nav{
+        display: none;
+        flex-flow: row wrap;
+    }
+    .product{
+        flex-flow: column nowrap;
+        flex: 0 1 300px;
+        border-radius: 5px;
+        margin: 5px;
+    }
+    .product img{
+        margin: auto;
+    }
+    aside{
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+    }
+
+}

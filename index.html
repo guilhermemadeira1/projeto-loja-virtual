@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+<body>
+    <header>
+        <h1>Loja virtual</h1>
+         <div class="div-search">
+            <input type="text" id="input-search" class="search">
+            <span class="material-symbols-outlined" id="search-icon">search</span>
+        </div>
+    </header>
+    <nav>
+        <div class="hamburger-menu" id="hamburguer">
+            <span class="material-symbols-outlined">menu</span>
+        </div>
+        <div id="options">
+            <a href="">Eletrodoméstico</a>
+            <a href="">Decoração</a>
+            <a href="">Cozinha</a>
+            <a href="">Banheiro</a>
+            <a href="">Lazer</a>
+        </div>
+        <div class="price-range-mobile-div">
+            <label for="price-range-mobile">Preços até: </label>
+            <input type="range" min="50" max="1000" value="150" step="50" id="price-range-mobile" class="price-range-input">
+            <button class="btn btn-red">Filtrar</button>
+        </div>
+    </nav>
+    <main>
+        <article class="product">
+            <img src="logo-home.jpg" alt="imagem">
+            <div class="product-description">
+                <h3>Produto</h3>
+                <p>Marca: Marca X</p>
+                <p>Categoria: Eletrodomestico </p>
+                <p>Preço: 399,99</p>
+                <div>
+                    <button class="btn btn-red">Adicionar</button>
+                    <button class="btn">Detalhes</button>
+                </div>
+            </div>
+        </article>
+         <article class="product">
+            <img src="logo-home.jpg" alt="imagem">
+            <div class="product-description">
+                <h3>Produto</h3>
+                <p>Marca: Marca X</p>
+                <p>Categoria: Eletrodomestico </p>
+                <p>Preço: 399,99</p>
+                <div>
+                    <button class="btn btn-red">Adicionar</button>
+                    <button class="btn">Detalhes</button>
+                </div>
+            </div>
+        </article>
+         <article class="product">
+            <img src="logo-home.jpg" alt="imagem">
+            <div class="product-description">
+                <h3>Produto</h3>
+                <p>Marca: Marca X</p>
+                <p>Categoria: Eletrodomestico </p>
+                <p>Preço: 399,99</p>
+                <div>
+                    <button class="btn btn-red">Adicionar</button>
+                    <button class="btn">Detalhes</button>
+                </div>
+            </div>
+        </article>
+    </main>
+    <aside>
+        <form action="" method="get">
+            <h2>Filtros de busca </h2>
+            <ul>
+                <li class="filter-option">
+                    <label for="f1">Eletrodoméstico</label>
+                    <input type="checkbox" name="filter" id="f1">
+                </li>
+                <li class="filter-option">
+                    <label for="f2">Decoração</label>
+                    <input type="checkbox" name="filter" id="f2">
+                </li>
+                <li class="filter-option">
+                    <label for="f3">Cozinha</label>
+                    <input type="checkbox" name="filter" id="f3">
+                </li>
+                <li class="filter-option">
+                    <label for="f4">Banheiro</label>
+                    <input type="checkbox" name="filter" id="f4">
+                </li>
+                <li class="filter-option">
+                    <label for="f5">Lazer</label>
+                    <input type="checkbox" name="filter" id="f5">
+                </li>
+                <li>
+                    <label for="price-range-desktop">Preços até: </label>
+                    <input type="range" min="50" max="1000" value="150" step="50" id="price-range-desktop" class="price-range-input">
+                </li>
+                <li>
+                    <input type="submit" class="btn btn-red" value="Filtrar">
+                    <input type="reset" class="btn" value="Limpar">
+                </li>
+            </ul>
+        </form>
+        <p>Qualidade e preço acessível!</p>
+    </aside>
+    <footer>
+        <p>&copy copyright 2025</p>
+    </footer>
+</body>
+<script src="script.js"></script>
+</html>
