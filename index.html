@@ -35,9 +35,24 @@
         <div class="price-range-mobile-div">
             <label for="price-range-mobile">Preços até: </label>
             <input type="range" min="50" max="1000" value="150" step="50" id="price-range-mobile" class="price-range-input">
-            <button class="btn btn-red">Aplicar filtro</button>
+            <button class="btn">Aplicar filtro</button>
         </div>
     </nav>
+    <div class="modal">
+        <div class="product-details">
+            <span class="material-symbols-outlined" id="close-details">close</span>
+            <h3>Produto</h3>
+            <img src="imagens/logo-home.jpg" alt="imagem-produto">
+            <button class="btn btn-add">Adicionar</button>
+            <p>Avaliação: &#11088; &#11088; &#11088; &#11088; &#11088;</p>
+            <p>Categoria: </p>
+            <p>Marca: </p>
+            <p>Preço: </p>
+  
+            <p class="descript">Descrição: Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, incidunt. Qui ipsa quos praesentium sint ipsum, tempora deserunt consequuntur odit modi nostrum placeat reprehenderit quod amet non natus quaerat illum.</p>
+         
+        </div>
+    </div>
     <main>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         <section class="product-section">
@@ -50,7 +65,7 @@
                     <p>Categoria: Eletrodomestico </p>
                     <p>Preço: 399,99</p>
                     <div>
-                        <button class="btn btn-red">Adicionar</button>
+                        <button class="btn btn-add">Adicionar</button>
                         <button class="btn">Detalhes</button>
                     </div>
                 </div>
@@ -62,7 +77,7 @@
         <form action="" method="get">
             <h2>Filtros de busca
                 <abbr title="filtrar preços">
-                    <span id="filter-button" class="material-symbols-outlined">filter_alt</span>
+                    <span id="filter-icon" class="material-symbols-outlined">filter_alt</span>
                 </abbr>
             </h2>
             <ul>

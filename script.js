@@ -8,6 +8,11 @@ const menuOptions = document.querySelector("#menu-options");
 const hamburgerButton = document.querySelector('#hamburguer-button');
 const filterButton = document.querySelector("#filter-button");
 
+const modal = document.querySelector(".modal");
+const modalCloseDetails = document.querySelector("#close-details");
+
+const btnAddList = document.querySelectorAll(".btn-add");
+
 const products = [
     {   
         name: 'Torradeira elétrica',
@@ -89,9 +94,16 @@ function createProduct(name, brand, category, price, image){
     productDescr.appendChild(priceP);
 
     btnAdd.innerHTML = 'Adicionar';
-    btnAdd.setAttribute('class', 'btn btn-red');
+    btnAdd.setAttribute('class', 'btn btn-add');
     btnDetails.innerHTML = 'Detalhes';
-    btnDetails.setAttribute('class', 'btn');
+
+    btnDetails.addEventListener("click",()=>{
+        modal.style.display = 'flex';
+        console.log(btnDetailsList);
+    });
+
+    btnDetails.classList.add('btn');
+    btnDetails.classList.add('btn-details');
 
     optionsDiv.appendChild(btnAdd);
     optionsDiv.appendChild(btnDetails);
@@ -100,7 +112,7 @@ function createProduct(name, brand, category, price, image){
     product.appendChild(productImg);
     product.appendChild(productDescr);
     productSection.appendChild(product);
-}
+};
 
 
 hamburgerButton.addEventListener("click", ()=>{
@@ -138,14 +150,13 @@ priceRanges.forEach(input =>{
     });
 });
 
-//menuOptions.style.display = 'none';
+modalCloseDetails.addEventListener("click",()=>{
+    modal.style.display = 'none';
+});
 
 window.addEventListener("resize", ()=>{
 
 });
-
-window.addEventListener("", )
-
 
 searchIcon.addEventListener("click",()=>{
     divSearchInput.style.left = '39%';
