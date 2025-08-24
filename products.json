@@ -1,0 +1,62 @@
+ [
+    {   
+        "id": 123456,
+        "name": "Torradeira elétrica",
+        "brand": "Marca X",
+        "category": "Eletrodoméstico",
+        "price": 159.90,
+        "image": "imagens/torradeira.jpg",
+        "description": "Torradeira elétrica feita para preparar pães com baixo consumo de energia.",
+        "rate": 1
+    },
+    {
+        "id": 654321,
+        "name": "Kit 10 xícaras de porcelana",
+        "brand": "Marca Y",
+        "category": "Cozinha",
+        "price": 119.90,
+        "image": "imagens/xicaras.jpg",
+        "description": "Kit com 10 unidades e xícaras de porcelana para chás e cafés. Tenha cuidado ao manusear.",
+        "rate": 2
+    },
+    {
+        "id": 543216,
+        "name": "Ferro de passar roupa",
+        "brand": "Marca X",
+        "category": "Eletrodoméstico",
+        "price": 148.00,
+        "image": "imagens/ferro-de-roupa.jpg",
+        "description": "Ferro elétrico de passar roupa com vapor d'água.",
+        "rate": 3
+    },
+    {
+        "id": 456321,
+        "name": "Travesseiro de cama",
+        "brand": "Marca Z",
+        "category": "Quarto",
+        "price": 49.90,
+        "image": "imagens/travesseiros.jpg",
+        "description": "Travesseiro de cama macio e aconchegante preenchido com algodão.",
+        "rate": 4
+    },
+    {
+        "id": 512346,
+       "name": "Bicicleta elétrica",
+       "brand": "Marca Z",
+       "category": "Lazer",
+       "price": 3429.90,
+       "image": "imagens/bicicleta-eletrica.jpg",
+       "description": "Bicicleta elétrica para passeios e locomoções do dia a dia com bateria durável e eficiente.",
+        "rate": 5
+    },
+    {
+       "id": null,
+       "name": null,
+       "brand": null,
+       "category": null,
+       "price": null,
+       "image": null,
+       "description": null,
+       "rate": null
+    }
+]

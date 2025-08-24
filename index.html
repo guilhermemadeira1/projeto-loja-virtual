@@ -35,23 +35,35 @@
         <div class="price-range-mobile-div">
             <label for="price-range-mobile">Preços até: </label>
             <input type="range" min="50" max="1000" value="150" step="50" id="price-range-mobile" class="price-range-input">
-            <button class="btn">Aplicar filtro</button>
+            <button class="btn btn-filter">Aplicar filtro</button>
         </div>
     </nav>
     <div class="modal">
+    <!--
         <div class="product-details">
-            <span class="material-symbols-outlined" id="close-details">close</span>
-            <h3>Produto</h3>
-            <img src="imagens/logo-home.jpg" alt="imagem-produto">
-            <button class="btn btn-add">Adicionar</button>
-            <p>Avaliação: &#11088; &#11088; &#11088; &#11088; &#11088;</p>
-            <p>Categoria: </p>
-            <p>Marca: </p>
-            <p>Preço: </p>
-  
-            <p class="descript">Descrição: Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, incidunt. Qui ipsa quos praesentium sint ipsum, tempora deserunt consequuntur odit modi nostrum placeat reprehenderit quod amet non natus quaerat illum.</p>
-         
+            <span class="material-symbols-outlined" id="close-button">close</span>
+            <div class="info">
+                <div class="header">
+                    <h3>Detalhes do produto</h3>
+                    <img src="imagens/logo-home.jpg" alt="imagem-produto">
+                </div>
+                <div class="data">
+                    <p><strong>Avaliação:</strong> &#11088; &#11088; &#11088; &#11088; &#11088;</p>
+                    <p><strong>Categoria: </strong></p>
+                    <p><strong>Marca: </strong></p>
+                    <p><strong>Preço: </strong></p>
+                    <p><strong>Descrição: </strong></p>
+                    <p class="description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, ex saepe. Cum, ducimus, iusto aut, natus alias sed reprehenderit voluptas praesentium cumque porro odio laboriosam asperiores eveniet incidunt nemo hic?
+                    </p>
+                </div>
+            </div>
+            <div class="options">
+                <button class="btn btn-add">Adicionar</button>
+                <button class="btn">Salvar</button>
+            </div>
         </div>
+    -->
     </div>
     <main>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -75,48 +87,49 @@
     </main>
     <aside>
         <form action="" method="get">
-            <h2>Filtros de busca
-                <abbr title="filtrar preços">
-                    <span id="filter-icon" class="material-symbols-outlined">filter_alt</span>
-                </abbr>
-            </h2>
-            <ul>
-                <li class="filter-option">
-                    <label for="f1">Eletrodoméstico</label>
-                    <input type="checkbox" name="filter" id="f1">
-                </li>
-                <li class="filter-option">
-                    <label for="f2">Decoração</label>
-                    <input type="checkbox" name="filter" id="f2">
-                </li>
-                <li class="filter-option">
-                    <label for="f3">Cozinha</label>
-                    <input type="checkbox" name="filter" id="f3">
-                </li>
-                <li class="filter-option">
-                    <label for="f4">Banheiro</label>
-                    <input type="checkbox" name="filter" id="f4">
-                </li>
-                <li class="filter-option">
-                    <label for="f5">Quarto</label>
-                    <input type="checkbox" name="filter">
-
-                </li>
-                <li class="filter-option">
-                    <label for="f6">Lazer</label>
-                    <input type="checkbox" name="filter" id="f5">
-                </li>
-                <li>
+            <div>
+                <h2>Filtros de busca
+                    <abbr title="filtrar preços">
+                        <span id="filter-icon" class="material-symbols-outlined">filter_alt</span>
+                    </abbr>
+                </h2>
+                <ul>
+                    <li class="filter-option">
+                        <label for="f1">Eletrodoméstico</label>
+                        <input type="checkbox" name="filter" id="f1">
+                    </li>
+                    <li class="filter-option">
+                        <label for="f2">Decoração</label>
+                        <input type="checkbox" name="filter" id="f2">
+                    </li>
+                    <li class="filter-option">
+                        <label for="f3">Cozinha</label>
+                        <input type="checkbox" name="filter" id="f3">
+                    </li>
+                    <li class="filter-option">
+                        <label for="f4">Banheiro</label>
+                        <input type="checkbox" name="filter" id="f4">
+                    </li>
+                    <li class="filter-option">
+                        <label for="f5">Quarto</label>
+                        <input type="checkbox" name="filter">
+                    </li>
+                    <li class="filter-option">
+                        <label for="f6">Lazer</label>
+                        <input type="checkbox" name="filter" id="f5">
+                    </li>
+                </ul>
+            </div>
+            <div>
                     <label for="price-range-desktop">Preços até: </label>
                     <input type="range" min="50" max="1000" value="150" step="50" id="price-range-desktop" class="price-range-input">
-                </li>
-                <li>
-                    <input type="submit" class="btn btn-red" value="Filtrar">
-                    <input type="reset" class="btn" value="Limpar">
-                </li>
-            </ul>
+                    <div>
+                        <input type="submit" class="btn btn-filter" value="Filtrar">
+                        <input type="reset" class="btn" value="Limpar">
+                    </div>
+            </div>
+            <p>Qualidade e preço acessível!</p>
         </form>
-        <p>Qualidade e preço acessível!</p>
     </aside>
     <footer>
         <div>

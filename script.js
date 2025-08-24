@@ -13,58 +13,64 @@ const modalCloseDetails = document.querySelector("#close-details");
 
 const btnAddList = document.querySelectorAll(".btn-add");
 
-const products = [
-    {   
-        name: 'Torradeira elétrica',
-        brand: 'Marca X',
-        category: 'Eletrodoméstico',
-        price: '159,90',
-        image: 'imagens/torradeira.jpg'
-    },
-    {
-        name: 'Kit 10 xícaras de porcelana',
-        brand: 'Marca Y',
-        category: 'Cozinha',
-        price: '119,90',
-        image: 'imagens/xicaras.jpg'
-    },
-    {
-        name: 'Ferro de passar roupa',
-        brand: 'Marca X',
-        category: 'Eletrodoméstico',
-        price: '148,00',
-        image: 'imagens/ferro-de-roupa.jpg'
-    },
-    {
-        name: 'Travesseiro de cama',
-        brand: 'Marca Z',
-        category: 'Quarto',
-        price: '49,90',
-        image: 'imagens/travesseiros.jpg'
-    },
-    {
-        name: 'Bicicleta elétrica',
-        brand: 'Marca Z',
-        category: 'Lazer',
-        price: '3.429,90',
-        image: 'imagens/bicicleta-eletrica.jpg'
+
+/*
+fazer: trocar createElement por template tag
+
+*/
+async function fetchProducts(){
+    let products;
+    try{
+        const response = await fetch('products.json');
+        products = await response.json();
     }
-];
+    catch{
+        console.error("Erro ao buscar os produtos.")
+    }
+    return products;
+}
 
-products.forEach(prod =>{
-    let name = prod['name'];
-    let brand = prod['brand'];
-    let category = prod['category'];
-    let price = prod['price'];
-    let image = prod['image'];
+async function renderProducts(){
+    const products = await fetchProducts();
+    console.log(products);
 
-    if(!prod['image']){
+    products.forEach(prod =>{
+        let name = prod['name'];
+        let brand = prod['brand'];
+        let category = prod['category'];
+        let price = prod['price'];
+        let image = prod['image'];
+        let description = prod['description'];
+        let rate = prod['rate'];
+
+        createProduct(name, brand, category, price, image, description,rate);
+    });
+}
+renderProducts();
+
+function createProduct(name, brand, category, price, image, description, rate){
+    if(!name){
+        name = 'Nome indefinido';
+    }
+    if(!brand){
+        brand = 'Indefinida';
+    }
+    if(!category){
+        category = 'Indefinida';
+    }
+    if(!price){
+        price = 'Indefinido';
+    }
+    if(!image){
         image = 'imagens/logo-home.jpg';
     }
-    createProduct(name,brand,category,price,image);
-});
+    if(!description){
+        description = 'Informações não foram passadas para este produtos.'
+    }
+    if(!rate){
+        rate = 'Indisponível';
+    }
 
-function createProduct(name, brand, category, price, image){
     const productSection = document.querySelector('section.product-section');
     const product = document.createElement('article');
     const productImg = document.createElement('img');
@@ -79,17 +85,14 @@ function createProduct(name, brand, category, price, image){
     productDescr.setAttribute('class','product-description');
 
     const productName = document.createElement('h3');
-    const brandP  = document.createElement('p');
     const categoryP  = document.createElement('p');
     const priceP  = document.createElement('p');
 
     productName.innerHTML = name;
-    brandP.innerHTML = 'Marca: ' + brand;
-    categoryP.innerHTML = 'Categoria: ' + category;
-    priceP.innerHTML = 'Preço: R$' + price;
+    categoryP.innerHTML = 'Categoria: <strong>' + category + '</strong>';
+    priceP.innerHTML = 'Preço: <strong>' + price.toLocaleString('pt-br',{currency: 'BRL', style: 'currency', }) + '</strong>';
 
     productDescr.appendChild(productName);
-    productDescr.appendChild(brandP);
     productDescr.appendChild(categoryP);
     productDescr.appendChild(priceP);
 
@@ -98,10 +101,88 @@ function createProduct(name, brand, category, price, image){
     btnDetails.innerHTML = 'Detalhes';
 
     btnDetails.addEventListener("click",()=>{
-        modal.style.display = 'flex';
-        console.log(btnDetailsList);
-    });
+        const modal = document.querySelector('.modal');
+        const productDetails = document.createElement('div');
+        const info = document.createElement('div');
+        const header = document.createElement('div');
+        const data = document.createElement('div');
+        const options = document.createElement('div');
 
+        const title = document.createElement('h3');
+        const img = document.createElement('img');
+        const close = document.createElement('span');
+        
+        modal.style.display = 'flex'; // exibe o modal
+        
+        if(modal.hasChildNodes()){
+            modal.innerHTML = '';  //limpa abas de detalhes aberta anteriormente no modal
+        }
+    
+        img.src = image;
+        close.id = 'close-button';
+        close.innerHTML = 'close';
+        close.classList.add('material-symbols-outlined');
+        close.addEventListener("click",()=>{
+            modal.style.display = 'none';
+        });
+        title.innerHTML = name;
+
+        productDetails.classList.add('product-details');
+        info.classList.add('info');
+        header.classList.add('header');
+        data.classList.add('data');
+
+        header.appendChild(title);
+        header.appendChild(img);
+        productDetails.appendChild(close);
+        productDetails.appendChild(info);
+        info.appendChild(header);
+        info.appendChild(data);
+
+        const pRate = document.createElement('p');
+        const pCateg = document.createElement('p');
+        const pBrand = document.createElement('p');
+        const pPrice = document.createElement('p');
+        const pDescHeader = document.createElement('p');
+        const pDesc = document.createElement('p');
+        pDesc.classList.add('description');
+       
+        const btnAdd2 = document.createElement('button');
+        const btnSave = document.createElement('button');
+        
+        btnAdd2.innerHTML = 'Adicionar';
+        btnSave.innerHTML = 'Salvar nos favoritos';
+        
+        options.classList.add('options');
+        btnAdd2.classList.add('btn', 'btn-add');
+        btnSave.classList.add('btn');
+        options.appendChild(btnAdd2);
+        options.appendChild(btnSave);
+        productDetails.appendChild(options);
+        console.log(rate);
+        pRate.innerHTML = '<strong>Avaliação</strong>: ';
+
+        if(typeof rate === 'number' && rate > 0){
+            for(let i = 0; i < rate; i++){
+                pRate.innerHTML += '&#11088;';
+            }
+        }
+        else{
+            pRate.innerHTML += rate;
+        }
+
+        pCateg.innerHTML = `<strong>Categoria:</strong> ${category}`;
+        pBrand.innerHTML = `<strong>Marca:</strong> ${brand}`;
+        pPrice.innerHTML = `<strong>Preço:</strong> ${price.toLocaleString('pt-br', {currency: 'BRL', style: 'currency'})}`;
+        pDescHeader.innerHTML = `<strong>Descrição: </strong>`;
+        pDesc.innerHTML = description;
+        const pList = [pRate, pBrand, pCateg, pPrice, pDescHeader, pDesc];
+        pList.forEach(p =>{
+            data.appendChild(p);
+        });
+        modal.appendChild(productDetails);
+        
+    });
     btnDetails.classList.add('btn');
     btnDetails.classList.add('btn-details');
 
@@ -150,12 +231,9 @@ priceRanges.forEach(input =>{
     });
 });
 
-modalCloseDetails.addEventListener("click",()=>{
+modal.addEventListener("click", (event)=>{
+    console.log('modal clicado'); // não propaga o evento para o conteúdo do modal
     modal.style.display = 'none';
-});
-
-window.addEventListener("resize", ()=>{
-
 });
 
 searchIcon.addEventListener("click",()=>{
