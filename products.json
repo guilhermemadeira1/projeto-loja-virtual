@@ -7,7 +7,7 @@
         "price": 159.90,
         "image": "imagens/torradeira.jpg",
         "description": "Torradeira elétrica feita para preparar pães com baixo consumo de energia.",
-        "rate": 1
+        "rate": 5
     },
     {
         "id": 654321,
@@ -50,13 +50,75 @@
         "rate": 5
     },
     {
-       "id": null,
-       "name": null,
-       "brand": null,
-       "category": null,
-       "price": null,
-       "image": null,
-       "description": null,
-       "rate": null
+       "id": 224456,
+       "name": "Frigideira antiaderente",
+       "brand": "Marca A",
+       "category": "Cozinha",
+       "price": 39.90,
+       "image": "imagens/frigideira.jpg",
+       "description": "Frigideira antiaderente para cozinhar sem óleo.",
+       "rate": 4
     }
+    ,
+    {
+       "id": 114456,
+       "name": "Jogo de tabuleiro Monopoly",
+       "brand": "Marca B",
+       "category": "Lazer",
+       "price": 139.90,
+       "image": "imagens/monopoly.jpg",
+       "description": "Frigideira antiaderente para cozinhar sem óleo.",
+       "rate": 4
+    },
+    {
+       "id": 627191,
+       "name": "Liquidificador",
+       "brand": "Marca B",
+       "category": "Cozinha",
+       "price": 62.90,
+       "image": "imagens/liquidificador.jpg",
+       "description": "Frigideira antiaderente para cozinhar sem óleo.",
+       "rate": 5
+    },
+    {
+       "id": 321322,
+       "name": "Máquina de barbear",
+       "brand": "Marca C",
+       "category": "Banheiro",
+       "price": 15.90,
+       "image": "imagens/maquina-de-barbear.jpg",
+       "description": "Máquina de barbear e corte de cabelo simples.",
+       "rate": 5
+    },
+    {
+       "id": 233266,
+       "name": "Controle para videogame Xbox",
+       "brand": "Marca F",
+       "category": "Lazer",
+       "price": 298.90,
+       "image": "imagens/controle-xbox.png",
+       "description": "1 controle sem fio para console Xbox.",
+       "rate": 3
+    },
+    {
+       "id": 782783,
+       "name": "Carpete de sala",
+       "brand": "Marca G",
+       "category": "Decoração",
+       "price": 199.90,
+       "image": "imagens/carpete.jpg",
+       "description": "Carpete felpudo 5x5 metros para sala de estar.",
+       "rate": 4
+    },
+    {
+       "id": 928722,
+       "name": "Kit 5 toalhas de banho",
+       "brand": "Marca A",
+       "category": "Banheiro",
+       "price": 159.90,
+       "image": "imagens/toalhas-de-banho.jpg",
+       "description": "Kit com 5 unidades de toalhas para banho.",
+       "rate": 5
+    }
+    
 ]

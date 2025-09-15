@@ -21,7 +21,7 @@
                 <span class="material-symbols-outlined" id="hamburguer-button">menu</span>
             </abbr>
             <abbr title="filtrar preços">
-                <span id="filter-button" class="material-symbols-outlined">filter_alt</span>
+                <span id="filter-icon" class="material-symbols-outlined">filter_alt</span>
             </abbr>
         </div>
         <div id="menu-options">
@@ -34,7 +34,7 @@
         </div>
         <div class="price-range-mobile-div">
             <label for="price-range-mobile">Preços até: </label>
-            <input type="range" min="50" max="1000" value="150" step="50" id="price-range-mobile" class="price-range-input">
+            <input type="range" min="50" max="5000" value="150" step="100" id="price-range-mobile" class="price-range-input">
             <button class="btn btn-filter">Aplicar filtro</button>
         </div>
     </nav>
@@ -66,8 +66,7 @@
     -->
     </div>
     <main>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <section class="product-section">
+        <section id="product-section" class="product-section">
             <!--
             <article class="product">
                 <img src="imagens/logo-home.jpg" alt="imagem">
@@ -85,7 +84,7 @@
             -->
         </section>
     </main>
-    <aside>
+    <aside id="aside" class="hidden">
         <form action="" method="get">
             <div>
                 <h2>Filtros de busca
@@ -96,37 +95,37 @@
                 <ul>
                     <li class="filter-option">
                         <label for="f1">Eletrodoméstico</label>
-                        <input type="checkbox" name="filter" id="f1">
+                        <input type="checkbox" name="filter" id="f1" value="eletrodoméstico">
                     </li>
                     <li class="filter-option">
                         <label for="f2">Decoração</label>
-                        <input type="checkbox" name="filter" id="f2">
+                        <input type="checkbox" name="filter" id="f2" value="decoração">
                     </li>
                     <li class="filter-option">
                         <label for="f3">Cozinha</label>
-                        <input type="checkbox" name="filter" id="f3">
+                        <input type="checkbox" name="filter" id="f3" value="cozinha">
                     </li>
                     <li class="filter-option">
                         <label for="f4">Banheiro</label>
-                        <input type="checkbox" name="filter" id="f4">
+                        <input type="checkbox" name="filter" id="f4" value="banheiro">
                     </li>
                     <li class="filter-option">
                         <label for="f5">Quarto</label>
-                        <input type="checkbox" name="filter">
+                        <input type="checkbox" name="filter" id="f5" value="quarto">
                     </li>
                     <li class="filter-option">
                         <label for="f6">Lazer</label>
-                        <input type="checkbox" name="filter" id="f5">
+                        <input type="checkbox" name="filter" id="f6" value="lazer">
                     </li>
                 </ul>
             </div>
             <div>
-                    <label for="price-range-desktop">Preços até: </label>
-                    <input type="range" min="50" max="1000" value="150" step="50" id="price-range-desktop" class="price-range-input">
-                    <div>
-                        <input type="submit" class="btn btn-filter" value="Filtrar">
-                        <input type="reset" class="btn" value="Limpar">
-                    </div>
+                <label for="price-range-desktop">Preços até: </label>
+                <input type="range" min="50" max="5000" value="5000" step="100" id="price-range-desktop" class="price-range-input">
+                <div>
+                    <input type="submit" class="btn btn-filter" value="filtrar">
+                    <input type="reset" id="btn-clear-desktop" class="btn" value="Limpar">
+                </div>
             </div>
             <p>Qualidade e preço acessível!</p>
         </form>
