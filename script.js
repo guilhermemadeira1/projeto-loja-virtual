@@ -164,6 +164,9 @@ async function filterProducts(){
     if(countResultSet < 1){
         console.log("Nenhum produto");
         productSection.innerHTML ='<p class="result-message">Nenhum produto encontrado.</p>';
+        if(!productSection.classList.contains("empty-product-section")){
+            productSection.classList.add("empty-product-section");
+        }
     }
 }
 
