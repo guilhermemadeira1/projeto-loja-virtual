@@ -1,9 +1,6 @@
 @charset "UTF-8";
 
-/*
-Fazer: Trocar position fixed por stiky. Fixed tira do contêiner e fixed mantém.
-
-*/
+/*branch: master*/
 
 :root{
     --cor1: #464fce;
