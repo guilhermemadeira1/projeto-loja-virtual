@@ -1,6 +1,7 @@
-/*branch: bug-fix-product-section*/
+/*branch: bug-fix-rolagem-menu*/
 
 const nav = document.querySelector("nav");
+const menu = document.querySelector("#menu");
 const searchIcon =  document.querySelector("#search-icon");
 const divSearchInput = document.querySelector("#div-search");
 const aside = document.querySelector("#aside");
@@ -27,6 +28,8 @@ fazer: trocar createElement por template tag
 
 */
 
+nav.style.height = menu.getBoundingClientRect().height + 'px'; // ajusta o nav para ficar da altura do menu
+
 window.addEventListener("resize", ()=>{
     if(window.innerWidth > 620){
         aside.classList.remove("hidden");
@@ -35,6 +38,17 @@ window.addEventListener("resize", ()=>{
         aside.classList.add("hidden");
     }
 } );
+
+window.addEventListener("scroll", ()=>{
+    const headerBottomPosition = document.querySelector("header").getBoundingClientRect().bottom;
+
+    if(headerBottomPosition <= 0){
+        aside.style.top = '0px';
+    }
+    else{
+        aside.style.top = headerBottomPosition + 'px';
+    }
+});
 
 function objectHasInvalidValues(obj){
     for(const key in obj){
@@ -344,16 +358,20 @@ filterClearButton.addEventListener("click", () => {
 });
 
 filterIcon.addEventListener("click",()=>{
-    const priceMobileDiv = document.querySelector(".price-range-mobile-div");
-    console.log(priceMobileDiv);
+    const priceMobileDiv = document.querySelector("#price-range-mobile-div");
+    const menu = document.querySelector("#menu");
+    const priceMobileDivHeight = priceMobileDiv.getBoundingClientRect().height;
+    const menuHeight = menu.getBoundingClientRect().height;
 
     priceMobileDiv.classList.toggle("price-range-mobile-div-open");
 
     if(priceMobileDiv.classList.contains("price-range-mobile-div-open")){
-        filterIcon.innerHTML = 'filter_alt_off';   
+        filterIcon.innerHTML = 'filter_alt_off';
+        nav.style.height = (menuHeight + priceMobileDivHeight) + "px"; // altura do range + altura do menu
     }
     else{
         filterIcon.innerHTML = 'filter_alt';
+        nav.style.height =  menuHeight + "px"; // altura do menu azul escuro
     }
 });
 

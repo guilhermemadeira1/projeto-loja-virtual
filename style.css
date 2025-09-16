@@ -5,7 +5,7 @@ Fazer: Trocar position fixed por stiky. Fixed tira do contêiner e fixed mantém
 
 */
 
-/*branch: bug-fix-product-section*/
+/*branch: bug-fix-rolagem-menu*/
 
 :root{
     --cor1: #464fce;
@@ -41,11 +41,14 @@ header{
     grid-area: header;
     background-color:  var(--cor1);
     color: var(--cor3);
-    height: 90px;
+    position: sticky;
+    top: 0px;
+    width: 100%;
     padding: 25px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+    z-index: 100;
 }
 h1{
     display: flex;
@@ -54,11 +57,7 @@ h1{
 nav{
     grid-area: menu;
     width: 100%;
-}
-header, .menu{
-    position: fixed;
-    width: 100%;
-    z-index: 1;
+    transition: all .3s ease;
 }
 .menu{
     display: flex;
@@ -70,8 +69,9 @@ header, .menu{
     width: 100%;
     height: 40px;
     text-align: center;
+    position: sticky;
     transition: 0.3s linear;
-    margin-top: -10px;
+    z-index: 1;
 }
 .menu span{
     margin: 15px;
@@ -83,11 +83,10 @@ header, .menu{
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    transition: .8s ease;
-    margin-top: -300px;
-    position: fixed;
+    transition: .6s ease;
+    margin-top: -430px;
+    position: absolute;
     width: 100%;
-    z-index: 0;
 }
 #menu-options button{
     color:#fcfbdf;
@@ -100,8 +99,8 @@ header, .menu{
     transition: background-color .3s ease-in;
 }
 #menu-options.menu-open{
-    margin-top: 30px;
-
+    margin-top: 0px;
+    opacity: 1;
 }
 #menu-options button:hover{
     background-color: #9188b6;
@@ -117,14 +116,11 @@ header, .menu{
     padding: 10px;
     background-color: var(--cor4);
     margin-left: -700px;
-    transition: .6s ease;
-    position: fixed;
-    top: 22%;
+    transition: .3s ease-in;
     width: 100%;
 }
 .price-range-mobile-div-open{
     margin-left: 0px;
-
 }
 .price-range-mobile-div label{
     display: flex;
@@ -238,7 +234,6 @@ main > p{
 
 aside{
     grid-area: aside;
-    background-color: var(--cor3);
 }
 .hidden{
     display: none;
@@ -412,9 +407,11 @@ footer p{
     aside{
         display: block;
         position: fixed;
+        background-color: var(--cor3);
         top: 100px;
-        height: 100%;
         width: 200px;
+        height: 100%;
+        transition: all 0s; /*0s = animação sem delay*/
     }
     aside form{
         padding: 20px;
