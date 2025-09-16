@@ -1,3 +1,5 @@
+/*branch: bug-fix-product-section*/
+
 const nav = document.querySelector("nav");
 const searchIcon =  document.querySelector("#search-icon");
 const divSearchInput = document.querySelector("#div-search");
