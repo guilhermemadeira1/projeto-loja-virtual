@@ -1,4 +1,4 @@
-/*branch: master*/
+/*branch: feat-filtragem-mobile*/
 
 const nav = document.querySelector("nav");
 const searchIcon =  document.querySelector("#search-icon");
