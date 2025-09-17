@@ -34,9 +34,44 @@
             <button class="menu-opt">Lazer</button>
         </div>
         <div class="price-range-mobile-div">
-            <label for="price-range-mobile">Preços até: </label>
-            <input type="range" min="50" max="5000" value="150" step="100" id="price-range-mobile" class="price-range-input">
-            <button class="btn btn-filter">Aplicar filtro</button>
+            <form action="" class="form-filter-mobile">
+                <div class="filter-options">
+                    <h2>Categorias: </h2>
+                    <ul>
+                        <li class="filter-option checked-filter">
+                            <label for="c1-mobile">Eletrodoméstico</label>
+                            <input type="checkbox" name="filter" id="c1-mobile" value="eletrodoméstico">
+                        </li>
+                        <li class="filter-option">
+                            <label for="c2-mobile">Decoração</label>
+                            <input type="checkbox" name="filter" id="c2-mobile" value="decoração">
+                        </li>
+                        <li class="filter-option">
+                            <label for="c3-mobile">Cozinha</label>
+                            <input type="checkbox" name="filter" id="c3-mobile" value="cozinha">
+                        </li>
+                        <li class="filter-option">
+                            <label for="c4-mobile">Banheiro</label>
+                            <input type="checkbox" name="filter" id="c4-mobile" value="banheiro">
+                        </li>
+                        <li class="filter-option">
+                            <label for="c5-mobile">Quarto</label>
+                            <input type="checkbox" name="filter" id="c5-mobile" value="quarto">
+                        </li>
+                        <li class="filter-option">
+                            <label for="c6-mobile">Lazer</label>
+                            <input type="checkbox" name="filter" id="c6-mobile" value="lazer">
+                        </li>
+                    </ul>
+                </div>
+                <div class="filter-controls">
+                    <h2>Filtro de preço:</h2>
+                    <label for="price-range-mobile">Preços até: </label>
+                    <input type="range" min="50" max="5000" value="150" step="100" id="price-range-mobile" class="price-range-input">
+                    <button class="btn btn-filter">Aplicar filtro</button>
+                    <input type="reset" id="btn-clear-mobile" class="btn" value="Limpar">
+                </div>
+            </form>
         </div>
     </nav>
     <div class="modal">
@@ -95,28 +130,28 @@
                 </h2>
                 <ul>
                     <li class="filter-option">
-                        <label for="f1">Eletrodoméstico</label>
-                        <input type="checkbox" name="filter" id="f1" value="eletrodoméstico">
+                        <label for="c1-desktop">Eletrodoméstico</label>
+                        <input type="checkbox" name="filter" id="c1-desktop" value="eletrodoméstico">
                     </li>
                     <li class="filter-option">
-                        <label for="f2">Decoração</label>
-                        <input type="checkbox" name="filter" id="f2" value="decoração">
+                        <label for="c2-desktop">Decoração</label>
+                        <input type="checkbox" name="filter" id="c2-desktop" value="decoração">
                     </li>
                     <li class="filter-option">
-                        <label for="f3">Cozinha</label>
-                        <input type="checkbox" name="filter" id="f3" value="cozinha">
+                        <label for="c3-desktop">Cozinha</label>
+                        <input type="checkbox" name="filter" id="c3-desktop" value="cozinha">
                     </li>
                     <li class="filter-option">
-                        <label for="f4">Banheiro</label>
-                        <input type="checkbox" name="filter" id="f4" value="banheiro">
+                        <label for="c4-desktop">Banheiro</label>
+                        <input type="checkbox" name="filter" id="c4-desktop" value="banheiro">
                     </li>
                     <li class="filter-option">
-                        <label for="f5">Quarto</label>
-                        <input type="checkbox" name="filter" id="f5" value="quarto">
+                        <label for="c5-desktop">Quarto</label>
+                        <input type="checkbox" name="filter" id="c5-desktop" value="quarto">
                     </li>
                     <li class="filter-option">
-                        <label for="f6">Lazer</label>
-                        <input type="checkbox" name="filter" id="f6" value="lazer">
+                        <label for="c6-desktop">Lazer</label>
+                        <input type="checkbox" name="filter" id="c6-desktop" value="lazer">
                     </li>
                 </ul>
             </div>

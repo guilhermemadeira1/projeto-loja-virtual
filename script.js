@@ -3,12 +3,15 @@
 const nav = document.querySelector("nav");
 const searchIcon =  document.querySelector("#search-icon");
 const divSearchInput = document.querySelector("#div-search");
+
 const aside = document.querySelector("#aside");
+
 const priceRanges = document.querySelectorAll(".price-range-input");
 const priceRangeMobile = document.querySelector("#price-range-mobile");
 const priceRangeDesktop = document.querySelector("#price-range-desktop");
 
 const menuOptions = document.querySelector("#menu-options");
+
 const hamburgerButton = document.querySelector('#hamburguer-button');
 const filterIcon = document.querySelector("#filter-icon");
 const filterButtons = document.querySelectorAll(".btn-filter");
