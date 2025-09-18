@@ -1,4 +1,4 @@
-/*branch: master*/
+/*branch: feat-menu-navegacao*/
 
 const nav = document.querySelector("nav");
 const menu = document.querySelector("#menu");
