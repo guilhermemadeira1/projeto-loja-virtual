@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/*branch: master*/
+/*branch: feat-filtragem-mobile*/
 
 :root{
     --cor1: #464fce;
@@ -107,21 +107,58 @@ nav{
 }
 .price-range-mobile-div{
     display: flex;
+    flex-flow: column;
     justify-content: space-around;
-    padding: 10px;
+    padding: 20px;
     background-color: var(--cor4);
-    margin-left: -700px;
-    transition: .3s ease-in;
+    margin-top: -700px;
+    transition: .6s ease;
+    position: fixed;
+    top: 22%;
     width: 100%;
+    color: var(--cor3);
 }
 .price-range-mobile-div-open{
-    margin-left: 0px;
+    margin-top: -15px;
 }
-.price-range-mobile-div label{
+.price-range-mobile-div > .form-filter-mobile{
     display: flex;
-    align-items: center;
-    color: var(--cor3);
-} 
+    flex-flow: column nowrap;
+}
+.form-filter-mobile label{
+    text-align: center;
+    padding: 5px;
+}
+.form-filter-mobile h2{
+    font-size: 1.3em;
+    padding-bottom: 15px;
+}
+
+.form-filter-mobile > .filter-options ul{
+    display: flex;
+    flex-flow: row wrap;
+    list-style-type: none;
+}
+.form-filter-mobile > .filter-options > ul > li{
+    margin: 5px;
+    padding: 10px;
+    border-radius: 3px;
+    text-align: center;
+    background-color: var(--cor5);
+    cursor: pointer;
+}
+.filter-options > ul > li.checked-option{
+    border: solid 1px var(--cor3);
+}
+.filter-options > ul > li > input[type="checkbox"]{
+    display: none;
+}
+.form-filter-mobile > .filter-controls{
+    display: flex;
+    flex-flow: column nowrap;
+    padding-top: 20px;
+}
+
 .div-search{
     display: flex;
     position: relative;

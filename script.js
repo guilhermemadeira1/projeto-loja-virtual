@@ -1,19 +1,26 @@
-/*branch: master*/
+/*branch: feat-filtragem-mobile*/
 
 const nav = document.querySelector("nav");
 const menu = document.querySelector("#menu");
 const searchIcon =  document.querySelector("#search-icon");
 const divSearchInput = document.querySelector("#div-search");
+
 const aside = document.querySelector("#aside");
+
 const priceRanges = document.querySelectorAll(".price-range-input");
 const priceRangeMobile = document.querySelector("#price-range-mobile");
 const priceRangeDesktop = document.querySelector("#price-range-desktop");
 
 const menuOptions = document.querySelector("#menu-options");
+
+const btnClearDesktop = document.querySelector("#btn-clear-desktop");
+const btnClearMobile = document.querySelector("#btn-clear-mobile");
+const categoryOptionsMobile = document.querySelectorAll(".categories-list > .category-option");
+
 const hamburgerButton = document.querySelector('#hamburguer-button');
 const filterIcon = document.querySelector("#filter-icon");
 const filterButtons = document.querySelectorAll(".btn-filter");
-const filterClearButton = document.querySelector("#btn-clear-desktop");
+const filterCleaners = document.querySelectorAll(".btn-clear");
 
 const productSection = document.querySelector("#product-section")
 
@@ -361,10 +368,6 @@ filterButtons.forEach(btn =>{
     });
 });
 
-filterClearButton.addEventListener("click", () => {
-    productSection.innerHTML = "";
-    renderProductSection();
-});
 
 filterIcon.addEventListener("click",()=>{
     const priceMobileDiv = document.querySelector("#price-range-mobile-div");
@@ -383,6 +386,35 @@ filterIcon.addEventListener("click",()=>{
         nav.style.height =  menuHeight + "px"; // altura do menu azul escuro
     }
 });
+
+categoryOptionsMobile.forEach(opt =>{
+    opt.addEventListener("click",()=>{
+        const checkbox = opt.querySelector("input[type='checkbox']");
+        const isChecked = checkbox.checked;
+
+        checkbox.addEventListener("click",()=>{
+            if(checkbox.checked){
+                opt.classList.add("checked-option");
+            }
+            else{
+                opt.classList.remove("checked-option");
+            }
+        });
+        opt.querySelector("input[type='checkbox']") = !isChecked;
+
+        
+        console.log(checkbox.checked);      
+    });
+});
+
+btnClearMobile.addEventListener("click", ()=>{
+    categoryOptionsMobile.forEach(opt =>{
+        productSection.innerHTML = "";
+        renderProductSection();
+        opt.classList.remove("checked-option");
+    });
+});
+
 
 priceRanges.forEach(input =>{ // atualiza o label ao arrastar o range
     const label = document.querySelector(`label[for='${input.id}']`);
