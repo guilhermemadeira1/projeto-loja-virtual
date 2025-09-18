@@ -1,4 +1,4 @@
-/*branch: feat-filtragem-mobile*/
+/*branch: master*/
 
 const nav = document.querySelector("nav");
 const menu = document.querySelector("#menu");
@@ -44,6 +44,9 @@ window.addEventListener("load", ()=>{
 })
 
 window.addEventListener("resize", ()=>{
+    console.log(window.innerWidth)
+    nav.style.height = menu.getBoundingClientRect().height + 'px';
+
     if(window.innerWidth > 620){
         aside.classList.remove("hidden");
     }
@@ -194,6 +197,7 @@ async function filterProducts(){
 }
 
 function clearFilter(){
+    productSection.innerHTML = "";
     renderProductSection();
 }
 
@@ -407,10 +411,15 @@ categoryOptionsMobile.forEach(opt =>{
     });
 });
 
+btnClearDesktop.addEventListener("click", ()=>{
+    productSection.innerHTML = "";
+    renderProductSection();
+});
+
 btnClearMobile.addEventListener("click", ()=>{
-    categoryOptionsMobile.forEach(opt =>{
-        productSection.innerHTML = "";
-        renderProductSection();
+    productSection.innerHTML = "";
+    renderProductSection();
+    categoryOptionsMobile.forEach(opt =>{      
         opt.classList.remove("checked-option");
     });
 });

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/*branch: feat-filtragem-mobile*/
+/*branch: master*/
 
 :root{
     --cor1: #464fce;
@@ -113,7 +113,7 @@ nav{
     background-color: var(--cor4);
     margin-top: -700px;
     transition: .6s ease;
-    position: fixed;
+    position: absolute;
     top: 22%;
     width: 100%;
     color: var(--cor3);
