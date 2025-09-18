@@ -2,6 +2,8 @@
 
 /*branch: master*/
 
+/*branch: teste-grid-product-section*/
+
 :root{
     --cor1: #464fce;
     --cor2: #f10048;;
@@ -119,7 +121,6 @@ header, .menu{
 }
 .price-range-mobile-div-open{
     margin-left: 0px;
-
 }
 .price-range-mobile-div label{
     display: flex;
@@ -198,15 +199,12 @@ main > p{
 .product-section{
     display: flex;
     flex-flow: column nowrap;
-    background-color: var(--cor4);
+    background-color: var(--cor3);
     width: 100%;
-
 }
-.product-section p.result-message{
-    padding: 2px;
-    width: 100%;
-    text-align: center;
-    color: var(--cor5);
+ .product-section > p.result-message{
+    color: var(--cor4);
+    font-weight: bold;
 }
 .product{
     display: flex;
@@ -219,7 +217,7 @@ main > p{
 }
 .product img{
     max-width: 190px;
-    border: solid 1px #f10048;
+    box-shadow: 1px 1px 0px 1px var(--cor5);
     border-radius: 5px;
 }
 .product-description{
@@ -376,23 +374,28 @@ footer p{
         left: 39%;
     }
     .product-section{
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-start;
-        align-content: center;
-        background-color: var(--cor5);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 250px);
+        justify-content: space-around;
+        align-content: space-around;
+        place-items: stretch stretch;
+        gap: 5px;
+        padding: 20px;
         width: 100%;
-        padding: 3px;
-    }
-    .product-section > p.result-message{
-        color: var(--cor4);
+   
     }
     .product{
         flex-flow: column nowrap;
         border-radius: 5px;
-        flex: 0 0 220px;
-        min-width: 220px;
-        margin: 5px;
+        transition: all 0.2s ease;   
+    }
+    .product:hover{
+        box-shadow: 1px 1px 0px 2px var(--cor5);
+        margin-left: 5px;
+    }
+    .product:active{
+           background-color: var(--cor1);
+            color: var(--cor3);
     }
     .product img{
         align-self: center;
@@ -407,6 +410,8 @@ footer p{
     aside{
         display: block;
         position: fixed;
+        background-color: var(--cor3);
+        color: var(--cor5);
         top: 100px;
         height: 100%;
         width: 200px;
@@ -435,7 +440,6 @@ footer p{
     .product-details .data{
         flex-basis: 50%;
         padding: 10px;
-
     }
     .product-details .options{
     }

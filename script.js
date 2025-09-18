@@ -27,11 +27,17 @@ fazer: trocar createElement por template tag
 
 */
 
+window.addEventListener("load", ()=>{
+    if(window.innerWidth <= 620){
+        aside.classList.add("hidden");
+    }
+})
+
 window.addEventListener("resize", ()=>{
     if(window.innerWidth > 620){
         aside.classList.remove("hidden");
     }
-    if(window.innerWidth <= 620){
+    else{
         aside.classList.add("hidden");
     }
 } );
@@ -160,6 +166,9 @@ async function filterProducts(){
     if(countResultSet < 1){
         console.log("Nenhum produto");
         productSection.innerHTML ='<p class="result-message">Nenhum produto encontrado.</p>';
+        if(!productSection.classList.contains("empty-product-section")){
+            productSection.classList.add("empty-product-section");
+        }
     }
 }
 
