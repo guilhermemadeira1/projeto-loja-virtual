@@ -11,6 +11,7 @@ const priceRanges = document.querySelectorAll(".price-range-input");
 const priceRangeMobile = document.querySelector("#price-range-mobile");
 const priceRangeDesktop = document.querySelector("#price-range-desktop");
 
+const navigation = document.querySelector(".navigation");
 const navigationLinksDiv = document.querySelector("#navigation-links-div");
 
 const btnClearDesktop = document.querySelector("#btn-clear-desktop");
@@ -32,40 +33,46 @@ const defaultProductImg = 'imagens/logo-home.jpg';
 
 /*
 fazer: trocar createElement por template tag
-
 */
 
-priceRangeMobileDiv.style.height = menuMobile.getBoundingClientRect().height + 'px'; // ajusta o pricemobilediv para ficar da altura do menu
+const deviceBreakpoint = 620; //ponto de quebra desktop para dispositivos mobile
 
 window.addEventListener("load", ()=>{
-    if(window.innerWidth <= 620){
+    priceRangeMobileDiv.classList.add("hidden");
+
+    if(window.innerWidth <= deviceBreakpoint){
         aside.classList.add("hidden");
+        priceRangeMobileDiv.classList.remove("hidden");
+        priceRangeMobileDiv.classList.add("price-range-mobile-div-closed");
+        navigationLinksDiv.classList.remove("hidden");
+        navigationLinksDiv.classList.add("navigation-links-div-closed");
+       // priceRangeMobileDiv.style.height = menuMobile.getBoundingClientRect().height + 'px'; // ajusta o pricemobilediv para ficar da altura do menu
+    }
+    else{
+         priceRangeMobileDiv.classList.add("hidden");
     }
 })
 
 window.addEventListener("resize", ()=>{
-    console.log(window.innerWidth)
-       navigationLinksDiv.classList.add("navigation-links-div-closed");
-
-    if(window.innerWidth > 620){
-        aside.classList.remove("hidden");
-        priceRangeMobileDiv.classList.add("hidden");
+    if(window.innerWidth <= deviceBreakpoint){
+        aside.classList.add("hidden");
     }
     else{
-        priceRangeMobileDiv.style.height = menuMobile.getBoundingClientRect().height + 'px';
-        aside.classList.add("hidden");
-        priceRangeMobileDiv.classList.remove("price-mobile-div-closed");
+        aside.classList.remove("hidden");
+        priceRangeMobileDiv.classList.add("price-range-mobile-div-closed");
+        navigationLinksDiv.classList.remove("navigation-links-div-closed");
     }
 } );
 
 window.addEventListener("scroll", ()=>{
-    const headerBottomPosition = document.querySelector("header").getBoundingClientRect().bottom;
-
-    if(headerBottomPosition <= 0){
-        aside.style.top = '0px';
-    }
-    else{
-        aside.style.top = headerBottomPosition + 'px';
+    if(window.innerWidth > deviceBreakpoint){
+        const headerBottomPosition = document.querySelector("header").getBoundingClientRect().bottom;
+        if(headerBottomPosition <= 0){
+            aside.style.top = '0px';
+        }
+        else{
+            aside.style.top = headerBottomPosition + 'px';
+        }
     }
 });
 
@@ -80,6 +87,7 @@ function objectHasInvalidValues(obj){
       
     }
 }
+
 function getInvalidKeyList(obj){
     const invalidKeys = [];
     for(const key in obj){
@@ -288,8 +296,21 @@ function openProductDetails(product){
 
 function renderProduct(product){
     let {name, brand, category, price, image, description, rate} = product; // converte objeto em variáveis individuais
+
+    //let name, brand, category, price, image, description, rate;
+    /*
+        const defaultValues = {
+            name: 'Indisponível',
+            brand: 'Indisponível',
+            category: 'Indisponível',
+            price: 'Indisponível',
+            image: defaultProductImg,
+            description :'Informações não foram passadas para este produto.',
+            rate: 0
+    }
+    */
     if(!name){
-        name = 'Nome indisponível';
+        name = 'Nome indisponível' ;
     }
     if(!brand){
         brand = 'Indisponível';
@@ -356,16 +377,18 @@ function renderProduct(product){
     productArticle.appendChild(productDescr);
     productSection.appendChild(productArticle);
 };
-
-
+-
 hamburgerButton.addEventListener("click", ()=>{
     navigationLinksDiv.classList.toggle("navigation-links-div-closed");
+    const defaultTranslateY = navigation.style.transform;
+   
     if(navigationLinksDiv.classList.contains("navigation-links-div-closed")){
-         hamburgerButton.innerHTML = 'close';
+        hamburgerButton.innerHTML = 'menu';
     }
     else{
-         hamburgerButton.innerHTML = 'menu';
+        hamburgerButton.innerHTML = 'close';
     }
+    
 });
 
 filterButtons.forEach(btn =>{
@@ -376,20 +399,13 @@ filterButtons.forEach(btn =>{
 });
 
 filterIcon.addEventListener("click",()=>{
-    const priceMobileDiv = document.querySelector("#price-range-mobile-div");
-    const menuMobile = document.querySelector("#menu-mobile");
-    const priceMobileDivHeight = priceMobileDiv.getBoundingClientRect().height;
-    const menuHeight = menuMobile.getBoundingClientRect().height;
+    priceRangeMobileDiv.classList.toggle("price-range-mobile-div-closed");
 
-    priceMobileDiv.classList.toggle("price-range-mobile-div-closed");
-
-    if(priceMobileDiv.classList.contains("price-range-mobile-div-closed")){
-        filterIcon.innerHTML = 'filter_alt_off';
-        priceMobileDiv.style.height = (menuHeight + priceMobileDivHeight) + "px"; // altura do range + altura do menu
+    if(priceRangeMobileDiv.classList.contains("price-range-mobile-div-closed")){
+  ;     filterIcon.innerHTML = 'filter_alt';
     }
     else{
-        filterIcon.innerHTML = 'filter_alt';
-        priceMobileDiv.style.height =  menuHeight + "px"; // altura do menu azul escuro
+        filterIcon.innerHTML = 'filter_alt_off'
     }
 });
 
@@ -407,9 +423,6 @@ categoryOptionsMobile.forEach(opt =>{
             }
         });
         opt.querySelector("input[type='checkbox']") = !isChecked;
-
-        
-        console.log(checkbox.checked);      
     });
 });
 
@@ -425,7 +438,6 @@ btnClearMobile.addEventListener("click", ()=>{
         opt.classList.remove("checked-option");
     });
 });
-
 
 priceRanges.forEach(input =>{ // atualiza o label ao arrastar o range
     const label = document.querySelector(`label[for='${input.id}']`);

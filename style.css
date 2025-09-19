@@ -37,8 +37,6 @@ header{
     grid-area: header;
     background-color:  var(--cor1);
     color: var(--cor3);
-    position: sticky;
-    top: 0px;
     padding: 25px;
     display: flex;
     flex-flow: row wrap;
@@ -57,10 +55,9 @@ h1{
     align-items: center;
     background-color: #21234b;
     color: var(--cor3);
-    width: 100%;
     text-align: center;
     transition: 0.3s linear;
-    z-index: 1;
+    z-index: 2;
 }
 .menu-mobile span{
     margin: 15px;
@@ -71,10 +68,12 @@ h1{
 .navigation{
     grid-area: navigation;
     transition: all .3s ease;
+    transform: translateY(50px);
+    z-index: 1;
 }
 .navigation-links-div{
     display: flex;
-    width: 100vw;
+    width: 100%;
     flex-flow: column nowrap;
     justify-content: center;
     transition: .6s ease;
@@ -83,7 +82,6 @@ h1{
     color:#fcfbdf;
     text-align: center;
     text-decoration: none;
-    width: 100%;
     padding: 20px;
     background-color: var(--cor4);
     font-size: 1em;
@@ -91,8 +89,7 @@ h1{
     transition: background-color .3s ease-in;
 }
 .navigation-links-div-closed{
-    top: -430px;
-    transform: translateY(-430);
+    transform: translateY(-430px);
 }
 .navigation-links-div .nav-link:hover{
     background-color: #9188b6;
@@ -106,6 +103,7 @@ h1{
     background-color: var(--cor4);
     transition: .6s ease;
     position: absolute;
+    z-index: 1;
     top: 150px;
     width: 100%;
     color: var(--cor3);
@@ -384,11 +382,13 @@ footer p{
     .navigation{
         display: flex;
         justify-content: center;
+         transform: translateY(0px);
     }
     .navigation-links-div{
         top: 100px;
-        width: 60%;
+        width: 100%;
         flex-flow: row nowrap;
+        justify-content: center;
      
     }
     .navigation-links-div .nav-link{
