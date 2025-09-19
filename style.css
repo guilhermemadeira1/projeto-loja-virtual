@@ -14,21 +14,22 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body{
     background-color: var(--cor4);
     display: grid;
-    grid-template-rows: 100px repeat(3, auto) 300px;
+    grid-auto-rows: auto;
+    grid-template-rows: 100px 0px 50px auto auto 300px;
     grid-template-columns: minmax(0px, 200px) 1fr;
     grid-template-areas: "header header"
+                         "navigation navigation"
                          "menu menu"
                          "main main"
                          "aside aside"
                          "footer footer";
 }
 html,body{
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color:#0d0e24;
 }
@@ -49,12 +50,8 @@ h1{
     display: flex;
     align-items: center;
 }
-nav{
+.menu-mobile{
     grid-area: menu;
-    width: 100%;
-    transition: all .3s ease;
-}
-.menu{
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -62,48 +59,46 @@ nav{
     background-color: #21234b;
     color: var(--cor3);
     width: 100%;
-    height: 40px;
     text-align: center;
-    position: sticky;
     transition: 0.3s linear;
     z-index: 1;
 }
-.menu span{
+.menu-mobile span{
     margin: 15px;
 }
-.menu span:hover{
+.menu-mobile span:hover{
     cursor: pointer;
 }
-#menu-options{
+.navigation{
+    grid-area: navigation;
+    transition: all .3s ease;
+}
+.navigation-links-div{
     display: flex;
+    width: 100%;
     flex-flow: column nowrap;
     justify-content: center;
     transition: .6s ease;
-    margin-top: -430px;
     position: absolute;
-    width: 100%;
+    top: -430px;
 }
-#menu-options button{
+.navigation-links-div .nav-link{
     color:#fcfbdf;
-    width: 100%;
     text-align: center;
-    padding: 15px;
+    text-decoration: none;
+    width: 100%;
+    padding: 20px;
     background-color: var(--cor4);
     font-size: 1em;
     border-style: none;
     transition: background-color .3s ease-in;
 }
-#menu-options.menu-open{
-    margin-top: 0px;
-    opacity: 1;
+.navigation-links-div-open{
+    top: 150px;
 }
-#menu-options button:hover{
+.navigation-links-div .nav-link:hover{
     background-color: #9188b6;
     cursor: pointer;
-}
-.menu-option-checked{
-    background-color: var(--cor3);
-    color:#0d0e24;
 }
 .price-range-mobile-div{
     display: flex;
@@ -111,15 +106,14 @@ nav{
     justify-content: space-around;
     padding: 20px;
     background-color: var(--cor4);
-    margin-top: -700px;
     transition: .6s ease;
     position: absolute;
-    top: 22%;
+    top: -700px;
     width: 100%;
     color: var(--cor3);
 }
 .price-range-mobile-div-open{
-    margin-top: -15px;
+    top: 150px;
 }
 .price-range-mobile-div > .form-filter-mobile{
     display: flex;
@@ -368,8 +362,10 @@ footer p{
 
 @media screen and (min-width: 620px) {
     body{
+        grid-template-rows: 100px auto 50px auto auto 300px;
         grid-template-areas: "header header"
-                             "menu menu"
+                            "aside navigation"
+                             "aside main"
                              "aside main"
                              "aside main"
                              "aside footer";
@@ -384,12 +380,22 @@ footer p{
     main > p{
         margin: 0;
     }
-    .hamburger-menu{
+    .menu-mobile{
         display: none;
     }
-    nav{
-        display: none;
-        flex-flow: row wrap;
+    .navigation{
+        
+    }
+    .navigation-links-div{
+        transform: translateY(0px);
+        background-color: var(--cor5);
+        flex-flow: row nowrap;
+        justify-content: center;
+    }
+    .navigation-links-div .nav-link{
+        background-color: var(--cor5);
+        padding: 5px;
+        flex: 0 1 150px;
     }
     #search-icon{
         background-color: var(--cor5);
@@ -413,7 +419,6 @@ footer p{
         gap: 5px;
         padding: 20px;
         width: 100%;
-   
     }
     .product{
         flex-flow: column nowrap;
@@ -425,8 +430,8 @@ footer p{
         margin-left: 5px;
     }
     .product:active{
-           background-color: var(--cor1);
-            color: var(--cor3);
+        background-color: var(--cor1);
+        color: var(--cor3);
     }
     .product img{
         align-self: center;

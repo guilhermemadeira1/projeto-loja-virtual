@@ -1,17 +1,17 @@
 /*branch: feat-menu-navegacao*/
 
-const nav = document.querySelector("nav");
-const menu = document.querySelector("#menu");
+const menuMobile = document.querySelector("#menu-mobile");
 const searchIcon =  document.querySelector("#search-icon");
 const divSearchInput = document.querySelector("#div-search");
 
 const aside = document.querySelector("#aside");
 
+const priceRangeMobileDiv = document.querySelector("#price-range-mobile-div");
 const priceRanges = document.querySelectorAll(".price-range-input");
 const priceRangeMobile = document.querySelector("#price-range-mobile");
 const priceRangeDesktop = document.querySelector("#price-range-desktop");
 
-const menuOptions = document.querySelector("#menu-options");
+const navigationLinksDiv = document.querySelector("#navigation-links-div");
 
 const btnClearDesktop = document.querySelector("#btn-clear-desktop");
 const btnClearMobile = document.querySelector("#btn-clear-mobile");
@@ -35,7 +35,7 @@ fazer: trocar createElement por template tag
 
 */
 
-nav.style.height = menu.getBoundingClientRect().height + 'px'; // ajusta o nav para ficar da altura do menu
+priceRangeMobileDiv.style.height = menuMobile.getBoundingClientRect().height + 'px'; // ajusta o pricemobilediv para ficar da altura do menu
 
 window.addEventListener("load", ()=>{
     if(window.innerWidth <= 620){
@@ -45,7 +45,7 @@ window.addEventListener("load", ()=>{
 
 window.addEventListener("resize", ()=>{
     console.log(window.innerWidth)
-    nav.style.height = menu.getBoundingClientRect().height + 'px';
+    priceRangeMobileDiv.style.height = menuMobile.getBoundingClientRect().height + 'px';
 
     if(window.innerWidth > 620){
         aside.classList.remove("hidden");
@@ -356,8 +356,8 @@ function renderProduct(product){
 
 
 hamburgerButton.addEventListener("click", ()=>{
-    menuOptions.classList.toggle("menu-open");
-    if(menuOptions.classList.contains("menu-open")){
+    navigationLinksDiv.classList.toggle("navigation-links-div-open");
+    if(navigationLinksDiv.classList.contains("navigation-links-div-open")){
          hamburgerButton.innerHTML = 'close';
     }
     else{
@@ -375,19 +375,19 @@ filterButtons.forEach(btn =>{
 
 filterIcon.addEventListener("click",()=>{
     const priceMobileDiv = document.querySelector("#price-range-mobile-div");
-    const menu = document.querySelector("#menu");
+    const menuMobile = document.querySelector("#menu-mobile");
     const priceMobileDivHeight = priceMobileDiv.getBoundingClientRect().height;
-    const menuHeight = menu.getBoundingClientRect().height;
+    const menuHeight = menuMobile.getBoundingClientRect().height;
 
     priceMobileDiv.classList.toggle("price-range-mobile-div-open");
 
     if(priceMobileDiv.classList.contains("price-range-mobile-div-open")){
         filterIcon.innerHTML = 'filter_alt_off';
-        nav.style.height = (menuHeight + priceMobileDivHeight) + "px"; // altura do range + altura do menu
+        priceMobileDiv.style.height = (menuHeight + priceMobileDivHeight) + "px"; // altura do range + altura do menu
     }
     else{
         filterIcon.innerHTML = 'filter_alt';
-        nav.style.height =  menuHeight + "px"; // altura do menu azul escuro
+        priceMobileDiv.style.height =  menuHeight + "px"; // altura do menu azul escuro
     }
 });
 
