@@ -46,7 +46,6 @@ window.addEventListener("load", ()=>{
         priceRangeMobileDiv.classList.add("price-range-mobile-div-closed");
         navigationLinksDiv.classList.remove("hidden");
         navigationLinksDiv.classList.add("navigation-links-div-closed");
-       // priceRangeMobileDiv.style.height = menuMobile.getBoundingClientRect().height + 'px'; // ajusta o pricemobilediv para ficar da altura do menu
     }
     else{
          priceRangeMobileDiv.classList.add("hidden");
@@ -56,6 +55,7 @@ window.addEventListener("load", ()=>{
 window.addEventListener("resize", ()=>{
     if(window.innerWidth <= deviceBreakpoint){
         aside.classList.add("hidden");
+        navigationLinksDiv.classList.add("navigation-links-div-closed");
     }
     else{
         aside.classList.remove("hidden");
@@ -380,7 +380,6 @@ function renderProduct(product){
 -
 hamburgerButton.addEventListener("click", ()=>{
     navigationLinksDiv.classList.toggle("navigation-links-div-closed");
-    const defaultTranslateY = navigation.style.transform;
    
     if(navigationLinksDiv.classList.contains("navigation-links-div-closed")){
         hamburgerButton.innerHTML = 'menu';
