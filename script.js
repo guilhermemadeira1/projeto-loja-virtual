@@ -45,13 +45,16 @@ window.addEventListener("load", ()=>{
 
 window.addEventListener("resize", ()=>{
     console.log(window.innerWidth)
-    priceRangeMobileDiv.style.height = menuMobile.getBoundingClientRect().height + 'px';
+       navigationLinksDiv.classList.add("navigation-links-div-closed");
 
     if(window.innerWidth > 620){
         aside.classList.remove("hidden");
+        priceRangeMobileDiv.classList.add("hidden");
     }
     else{
+        priceRangeMobileDiv.style.height = menuMobile.getBoundingClientRect().height + 'px';
         aside.classList.add("hidden");
+        priceRangeMobileDiv.classList.remove("price-mobile-div-closed");
     }
 } );
 
@@ -356,8 +359,8 @@ function renderProduct(product){
 
 
 hamburgerButton.addEventListener("click", ()=>{
-    navigationLinksDiv.classList.toggle("navigation-links-div-open");
-    if(navigationLinksDiv.classList.contains("navigation-links-div-open")){
+    navigationLinksDiv.classList.toggle("navigation-links-div-closed");
+    if(navigationLinksDiv.classList.contains("navigation-links-div-closed")){
          hamburgerButton.innerHTML = 'close';
     }
     else{
@@ -372,16 +375,15 @@ filterButtons.forEach(btn =>{
     });
 });
 
-
 filterIcon.addEventListener("click",()=>{
     const priceMobileDiv = document.querySelector("#price-range-mobile-div");
     const menuMobile = document.querySelector("#menu-mobile");
     const priceMobileDivHeight = priceMobileDiv.getBoundingClientRect().height;
     const menuHeight = menuMobile.getBoundingClientRect().height;
 
-    priceMobileDiv.classList.toggle("price-range-mobile-div-open");
+    priceMobileDiv.classList.toggle("price-range-mobile-div-closed");
 
-    if(priceMobileDiv.classList.contains("price-range-mobile-div-open")){
+    if(priceMobileDiv.classList.contains("price-range-mobile-div-closed")){
         filterIcon.innerHTML = 'filter_alt_off';
         priceMobileDiv.style.height = (menuHeight + priceMobileDivHeight) + "px"; // altura do range + altura do menu
     }

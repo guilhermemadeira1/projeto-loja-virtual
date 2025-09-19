@@ -39,7 +39,6 @@ header{
     color: var(--cor3);
     position: sticky;
     top: 0px;
-    width: 100%;
     padding: 25px;
     display: flex;
     flex-flow: row wrap;
@@ -75,12 +74,10 @@ h1{
 }
 .navigation-links-div{
     display: flex;
-    width: 100%;
+    width: 100vw;
     flex-flow: column nowrap;
     justify-content: center;
     transition: .6s ease;
-    position: absolute;
-    top: -430px;
 }
 .navigation-links-div .nav-link{
     color:#fcfbdf;
@@ -93,8 +90,9 @@ h1{
     border-style: none;
     transition: background-color .3s ease-in;
 }
-.navigation-links-div-open{
-    top: 150px;
+.navigation-links-div-closed{
+    top: -430px;
+    transform: translateY(-430);
 }
 .navigation-links-div .nav-link:hover{
     background-color: #9188b6;
@@ -108,12 +106,12 @@ h1{
     background-color: var(--cor4);
     transition: .6s ease;
     position: absolute;
-    top: -700px;
+    top: 150px;
     width: 100%;
     color: var(--cor3);
 }
-.price-range-mobile-div-open{
-    top: 150px;
+.price-range-mobile-div-closed{
+    top: -700px;
 }
 .price-range-mobile-div > .form-filter-mobile{
     display: flex;
@@ -362,7 +360,7 @@ footer p{
 
 @media screen and (min-width: 620px) {
     body{
-        grid-template-rows: 100px auto 50px auto auto 300px;
+        grid-template-rows: 100px 30px 50px auto auto 300px;
         grid-template-areas: "header header"
                             "aside navigation"
                              "aside main"
@@ -384,18 +382,19 @@ footer p{
         display: none;
     }
     .navigation{
-        
-    }
-    .navigation-links-div{
-        transform: translateY(0px);
-        background-color: var(--cor5);
-        flex-flow: row nowrap;
+        display: flex;
         justify-content: center;
     }
+    .navigation-links-div{
+        top: 100px;
+        width: 60%;
+        flex-flow: row nowrap;
+     
+    }
     .navigation-links-div .nav-link{
-        background-color: var(--cor5);
-        padding: 5px;
-        flex: 0 1 150px;
+        padding: 6px;
+        flex: 0
+         1 200px;
     }
     #search-icon{
         background-color: var(--cor5);
