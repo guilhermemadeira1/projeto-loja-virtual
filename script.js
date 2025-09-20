@@ -1,17 +1,18 @@
 /*branch: master*/
 
-const nav = document.querySelector("nav");
-const menu = document.querySelector("#menu");
+const menuMobile = document.querySelector("#menu-mobile");
 const searchIcon =  document.querySelector("#search-icon");
 const divSearchInput = document.querySelector("#div-search");
 
 const aside = document.querySelector("#aside");
 
+const priceRangeMobileDiv = document.querySelector("#price-range-mobile-div");
 const priceRanges = document.querySelectorAll(".price-range-input");
 const priceRangeMobile = document.querySelector("#price-range-mobile");
 const priceRangeDesktop = document.querySelector("#price-range-desktop");
 
-const menuOptions = document.querySelector("#menu-options");
+const navigation = document.querySelector(".navigation");
+const navigationLinksDiv = document.querySelector("#navigation-links-div");
 
 const btnClearDesktop = document.querySelector("#btn-clear-desktop");
 const btnClearMobile = document.querySelector("#btn-clear-mobile");
@@ -32,37 +33,45 @@ const defaultProductImg = 'imagens/logo-home.jpg';
 
 /*
 fazer: trocar createElement por template tag
-
 */
 
-nav.style.height = menu.getBoundingClientRect().height + 'px'; // ajusta o nav para ficar da altura do menu
+const deviceBreakpoint = 620; //ponto de quebra desktop para dispositivos mobile
 
-window.addEventListener("load", ()=>{
-    if(window.innerWidth <= 620){
+window.addEventListener("DOMContentLoaded", ()=>{
+    if(window.innerWidth <= deviceBreakpoint){
         aside.classList.add("hidden");
+        priceRangeMobileDiv.classList.remove("hidden");
+        priceRangeMobileDiv.classList.add("price-range-mobile-div-closed");
+        navigationLinksDiv.classList.remove("hidden");
+        navigationLinksDiv.classList.add("navigation-links-div-closed");
+    }
+    else{
+         priceRangeMobileDiv.classList.add("hidden");
     }
 })
 
 window.addEventListener("resize", ()=>{
-    console.log(window.innerWidth)
-    nav.style.height = menu.getBoundingClientRect().height + 'px';
-
-    if(window.innerWidth > 620){
-        aside.classList.remove("hidden");
+    if(window.innerWidth <= deviceBreakpoint){
+        aside.classList.add("hidden");
+        priceRangeMobileDiv.classList.remove("hidden");
+        navigationLinksDiv.classList.add("navigation-links-div-closed");
     }
     else{
-        aside.classList.add("hidden");
+        aside.classList.remove("hidden");
+        priceRangeMobileDiv.classList.add("price-range-mobile-div-closed");
+        navigationLinksDiv.classList.remove("navigation-links-div-closed");
     }
 } );
 
 window.addEventListener("scroll", ()=>{
-    const headerBottomPosition = document.querySelector("header").getBoundingClientRect().bottom;
-
-    if(headerBottomPosition <= 0){
-        aside.style.top = '0px';
-    }
-    else{
-        aside.style.top = headerBottomPosition + 'px';
+    if(window.innerWidth > deviceBreakpoint){
+        const headerBottomPosition = document.querySelector("header").getBoundingClientRect().bottom;
+        if(headerBottomPosition <= 0){
+            aside.style.top = '0px';
+        }
+        else{
+            aside.style.top = headerBottomPosition + 'px';
+        }
     }
 });
 
@@ -77,6 +86,7 @@ function objectHasInvalidValues(obj){
       
     }
 }
+
 function getInvalidKeyList(obj){
     const invalidKeys = [];
     for(const key in obj){
@@ -109,28 +119,30 @@ async function renderProductSection(){
 }
 renderProductSection();
 
-function normalizeDefaultValues(product){
-    if(objectHasInvalidValues(product)){
-        const invalidKeys = getInvalidKeyList(product);
+function setDefaultValues(product){
+    const prod = {...product}; // cria uma cópia do objeto (const prod = product copiaria a referência, não o objeto)
+    if(objectHasInvalidValues(prod)){
+        const invalidKeys = getInvalidKeyList(prod);
         invalidKeys.forEach(key=>{
             switch(key){
                 case 'name': 
-                    product.name = 'Nome indisponível'; 
+                    prod.name = 'Nome indisponível'; 
                     break;
                 case 'image': 
-                    product.image = defaultProductImg; 
+                    prod.image = defaultProductImg; 
                     break;
                 case 'description': 
-                    product.description = 'Informações não foram passadas para este produto.'; 
+                    prod.description = 'Informações não foram passadas para este produto.'; 
                     break;
                 case 'rate': 
-                    product.rate = 0; 
+                    prod.rate = -1; 
                     break;
                 default:
-                    product[key] = 'Indisponível'
+                    prod[key] = 'Indisponível'
             }                
         });
     }
+    return prod;
 }
 
 function getVisibleRangeInput(){
@@ -144,49 +156,48 @@ function getVisibleRangeInput(){
 
 async function filterProducts(){
     const priceRange = getVisibleRangeInput();
-    console.log(priceRange)
-    const checkedCategoryList = Array.from(document.querySelectorAll("input[type='checkbox']:checked")).map(categ=> categ.value.toLowerCase());
+    //console.log(priceRange)
+    const checkedCategoryList = Array.from(document.querySelectorAll("input[type='checkbox']:checked")).map(checkbox => checkbox.value.toLowerCase());
     const productSection =  document.querySelector("section.product-section");
     const allProducts = await fetchProducts();
     const filteredProducts = [];
 
     let countResultSet = 0;
-    let filterPrice = 0;
+    let filterPrice = priceRange.max;
+    const priceValue = Number(priceRange.value);
 
     productSection.innerHTML = ''; //remove os produtos renderizados anteriormente
 
-    if(priceRange.value && !isNaN(priceRange.value)){
-        filterPrice = Number(priceRange.value); // adiciona o valor do último range não vazio
-        console.log(priceRange.value);
+    if(priceValue && !isNaN(priceValue)){
+        filterPrice = priceValue;
+        console.log(filterPrice); 
     }
     console.log(checkedCategoryList);
 
     allProducts.forEach(prod =>{
-        normalizeDefaultValues(prod);
-        const price  = Number(prod.price);
+        prod = setDefaultValues(prod);
+        const productPrice  = Number(prod.price);
 
         if(checkedCategoryList.length > 0){
             if(!prod.category || !checkedCategoryList.includes(prod.category.toLowerCase()))
                 return; // interrompe a iteração antes de renderizar o produto
         }
-      
         if(isNaN(prod.price)) 
             return;
 
-        if(price > filterPrice)
+        if(productPrice > filterPrice)
             return; // interrompe a iteração se o preço do produto for maior que o valor buscado
         
         countResultSet++;
         filteredProducts.push(prod);    
     });
-
     console.log(filteredProducts); 
+
     if(filteredProducts.length > 0){
         filteredProducts.forEach(prod =>{
             renderProduct(prod);
         });
     }
-
     if(countResultSet < 1){
         console.log("Nenhum produto");
         productSection.innerHTML ='<p class="result-message">Nenhum produto encontrado.</p>';
@@ -202,7 +213,7 @@ function clearFilter(){
 }
 
 function openProductDetails(product){
-    const modal = document.querySelector('.modal');
+    const modal = document.querySelector('#modal');
     const productDetails = document.createElement('div');
     const info = document.createElement('div');
     const header = document.createElement('div');
@@ -213,18 +224,17 @@ function openProductDetails(product){
     const img = document.createElement('img');
     const close = document.createElement('span');
         
-    modal.style.display = 'flex'; // exibe o modal
+    modal.classList.remove('hidden'); // exibe o modal
         
     if(modal.hasChildNodes()){
         modal.innerHTML = '';  //limpa abas de detalhes aberta anteriormente no modal
     }
-
     img.src = product.image;
     close.id = 'close-button';
     close.innerHTML = 'close';
     close.classList.add('material-symbols-outlined');
     close.addEventListener("click",()=>{
-        modal.style.display = 'none';
+        modal.classList.add('hidden');
     });
     title.innerHTML = product.name;
 
@@ -262,13 +272,13 @@ function openProductDetails(product){
     productDetails.appendChild(options);
     pRate.innerHTML = '<strong>Avaliação</strong>: ';
 
-    if(typeof product.rate === 'number' && product.rate > 0){
+    if(typeof product.rate === 'number' && product.rate > -1){
         for(let i = 0; i < product.rate; i++){
             pRate.innerHTML += '&#11088;';
         }
     }
     else{
-        pRate.innerHTML += 'Indisponível';
+        pRate.innerHTML += product.rate;
     }
 
     pCateg.innerHTML = `<strong>Categoria:</strong> ${product.category}`;
@@ -276,46 +286,28 @@ function openProductDetails(product){
     pPrice.innerHTML = `<strong>Preço:</strong> ${product.price.toLocaleString('pt-br', {currency: 'BRL', style: 'currency'})}`;
     pDescHeader.innerHTML = `<strong>Descrição: </strong>`;
     pDesc.innerHTML = product.description;
+
     const pList = [pRate, pBrand, pCateg, pPrice, pDescHeader, pDesc];
     pList.forEach(p =>{
         data.appendChild(p);
     });
+
     modal.appendChild(productDetails);
 }
 
 function renderProduct(product){
-    let {name, brand, category, price, image, description, rate} = product; // converte objeto em variáveis individuais
-    if(!name){
-        name = 'Nome indisponível';
-    }
-    if(!brand){
-        brand = 'Indisponível';
-    }
-    if(!category){
-        category = 'Indisponível';
-    }
-    if(!price){
-        price = 'Indisponível';
-    }
-    if(!image){
-        image = defaultProductImg;
-    }
-    if(!description){
-        description = 'Informações não foram passadas para este produtos.'
-    }
-    if(!rate){
-        rate = 0;
-    }
+    const prod = setDefaultValues(product);
+    let {name, brand, category, price, image, description, rate} = prod; // converte objeto em variáveis individuais
 
     const productSection = document.querySelector('section.product-section');
-    const productArticle = document.createElement('article');
+    const productCard = document.createElement('article');
     const productImg = document.createElement('img');
     const productDescr = document.createElement('div');
     const optionsDiv  = document.createElement('div');
     const btnAdd = document.createElement('button');
     const btnDetails = document.createElement('button');
 
-    productArticle.setAttribute('class', 'product');
+    productCard.setAttribute('class', 'product');
     productImg.setAttribute('src', image);
     productImg.setAttribute('alt', 'imagem-produto');
     productDescr.setAttribute('class','product-description');
@@ -349,20 +341,21 @@ function renderProduct(product){
     optionsDiv.appendChild(btnDetails);
     productDescr.appendChild(optionsDiv);
 
-    productArticle.appendChild(productImg);
-    productArticle.appendChild(productDescr);
-    productSection.appendChild(productArticle);
+    productCard.appendChild(productImg);
+    productCard.appendChild(productDescr);
+    productSection.appendChild(productCard);
 };
 
-
 hamburgerButton.addEventListener("click", ()=>{
-    menuOptions.classList.toggle("menu-open");
-    if(menuOptions.classList.contains("menu-open")){
-         hamburgerButton.innerHTML = 'close';
+    navigationLinksDiv.classList.toggle("navigation-links-div-closed");
+   
+    if(navigationLinksDiv.classList.contains("navigation-links-div-closed")){
+        hamburgerButton.innerHTML = 'menu';
     }
     else{
-         hamburgerButton.innerHTML = 'menu';
+        hamburgerButton.innerHTML = 'close';
     }
+    
 });
 
 filterButtons.forEach(btn =>{
@@ -372,22 +365,14 @@ filterButtons.forEach(btn =>{
     });
 });
 
-
 filterIcon.addEventListener("click",()=>{
-    const priceMobileDiv = document.querySelector("#price-range-mobile-div");
-    const menu = document.querySelector("#menu");
-    const priceMobileDivHeight = priceMobileDiv.getBoundingClientRect().height;
-    const menuHeight = menu.getBoundingClientRect().height;
+    priceRangeMobileDiv.classList.toggle("price-range-mobile-div-closed");
 
-    priceMobileDiv.classList.toggle("price-range-mobile-div-open");
-
-    if(priceMobileDiv.classList.contains("price-range-mobile-div-open")){
-        filterIcon.innerHTML = 'filter_alt_off';
-        nav.style.height = (menuHeight + priceMobileDivHeight) + "px"; // altura do range + altura do menu
+    if(priceRangeMobileDiv.classList.contains("price-range-mobile-div-closed")){
+  ;     filterIcon.innerHTML = 'filter_alt';
     }
     else{
-        filterIcon.innerHTML = 'filter_alt';
-        nav.style.height =  menuHeight + "px"; // altura do menu azul escuro
+        filterIcon.innerHTML = 'filter_alt_off'
     }
 });
 
@@ -396,18 +381,15 @@ categoryOptionsMobile.forEach(opt =>{
         const checkbox = opt.querySelector("input[type='checkbox']");
         const isChecked = checkbox.checked;
 
-        checkbox.addEventListener("click",()=>{
-            if(checkbox.checked){
-                opt.classList.add("checked-option");
-            }
-            else{
-                opt.classList.remove("checked-option");
-            }
-        });
-        opt.querySelector("input[type='checkbox']") = !isChecked;
+        checkbox.checked = !isChecked;
 
-        
-        console.log(checkbox.checked);      
+        if(checkbox.checked){
+            opt.classList.add("checked-option");
+        }
+        else{
+            opt.classList.remove("checked-option");
+        }
+       
     });
 });
 
@@ -424,28 +406,19 @@ btnClearMobile.addEventListener("click", ()=>{
     });
 });
 
-
 priceRanges.forEach(input =>{ // atualiza o label ao arrastar o range
     const label = document.querySelector(`label[for='${input.id}']`);
-
-    label.innerHTML = "Preços até: R$" + input.value + ",00";
+    label.innerHTML = "Preços até: " + Number(input.value).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
 
     input.addEventListener("change", ()=>{
-        label.innerHTML = "Preços até: R$" + input.value + ",00";
+        label.innerHTML = "Preços até: " + Number(input.value).toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
     });
 });
 
 modal.addEventListener("click", (event)=>{
     if(event.target === modal){
-        modal.style.display = 'none'; //oculta o modal apeans se o evento for acionado no fundo dele
+        modal.style.display = 'none'; //oculta o modal apenas se o evento for acionado no fundo dele
     }
 });
-
-searchIcon.addEventListener("click",()=>{
-    divSearchInput.style.left = '39%';
-    divSearchInput.style.opacity = '100%';
-    divSearchInput.style.width = '55%';
-});
-
 
 
