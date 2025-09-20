@@ -16,65 +16,63 @@
             <span class="material-symbols-outlined" id="search-icon">search</span>
         </div>
     </header>
-    <nav>
-        <div id="menu" class="menu">
-            <abbr title="menu">
-                <span class="material-symbols-outlined" id="hamburguer-button">menu</span>
-            </abbr>
-            <abbr title="filtrar preços">
-                <span id="filter-icon" class="material-symbols-outlined">filter_alt</span>
-            </abbr>
-        </div>
-        <div id="menu-options">
-            <button class="menu-opt menu-option-checked">Eletrodoméstico</button>
-            <button class="menu-opt">Decoração</button>
-            <button class="menu-opt">Cozinha</button>
-            <button class="menu-opt">Banheiro</button>
-            <button class="menu-opt">Quarto</button>
-            <button class="menu-opt">Lazer</button>
-        </div>
-        <div id="price-range-mobile-div" class="price-range-mobile-div">
-            <form action="" class="form-filter-mobile">
-                <div class="filter-options">
-                    <h2>Categorias: </h2>
-                    <ul class="categories-list">
-                        <li class="category-option">
-                            <label for="c1-mobile">Eletrodoméstico</label>
-                            <input type="checkbox" name="category" id="c1-mobile" value="eletrodoméstico">
-                        </li>
-                        <li class="category-option">
-                            <label for="c2-mobile">Decoração</label>
-                            <input type="checkbox" name="category" id="c2-mobile" value="decoração">
-                        </li>
-                        <li class="category-option">
-                            <label for="c3-mobile">Cozinha</label>
-                            <input type="checkbox" name="category" id="c3-mobile" value="cozinha">
-                        </li>
-                        <li class="category-option">
-                            <label for="c4-mobile">Banheiro</label>
-                            <input type="checkbox" name="category" id="c4-mobile" value="banheiro">
-                        </li>
-                        <li class="category-option">
-                            <label for="c5-mobile">Quarto</label>
-                            <input type="checkbox" name="category" id="c5-mobile" value="quarto">
-                        </li>
-                        <li class="category-option">
-                            <label for="c6-mobile">Lazer</label>
-                            <input type="checkbox" name="category" id="c6-mobile" value="lazer">
-                        </li>
-                    </ul>
-                </div>
-                <div class="filter-controls">
-                    <h2>Filtro de preço:</h2>
-                    <label for="price-range-mobile">Preços até: </label>
-                    <input type="range" min="50" max="5000" value="5000" step="100" id="price-range-mobile" class="price-range-input">
-                    <button class="btn btn-filter">Aplicar filtro</button>
-                    <input type="reset" id="btn-clear-mobile" class="btn btn-clear" value="Limpar">
-                </div>
-            </form>
+    <nav class="navigation">
+        <div id="navigation-links-div" class="navigation-links-div">
+            <a href="#"class="nav-link">Início</a>
+            <a href="#" class="nav-link">Categorias</a>
+            <a href="#" class="nav-link">Sobre nós</a>
+            <a href="#" class="nav-link">Fale conosco</a>
         </div>
     </nav>
-    <div class="modal">
+    <div id="menu-mobile" class="menu-mobile">
+        <abbr title="menu">
+            <span class="material-symbols-outlined" id="hamburguer-button">menu</span>
+        </abbr>
+        <abbr title="filtrar preços">
+            <span id="filter-icon" class="material-symbols-outlined">filter_alt</span>
+        </abbr>
+    </div>
+    <div id="price-range-mobile-div" class="price-range-mobile-div">
+        <form action="" class="form-filter-mobile">
+            <div class="filter-options">
+                <h2>Categorias: </h2>
+                <ul class="categories-list">
+                    <li class="category-option">
+                        <label for="c1-mobile">Eletrodoméstico</label>
+                        <input type="checkbox" name="category" id="c1-mobile" value="eletrodoméstico">
+                    </li>
+                    <li class="category-option">
+                        <label for="c2-mobile">Decoração</label>
+                        <input type="checkbox" name="category" id="c2-mobile" value="decoração">
+                    </li>
+                    <li class="category-option">
+                        <label for="c3-mobile">Cozinha</label>
+                        <input type="checkbox" name="category" id="c3-mobile" value="cozinha">
+                    </li>
+                    <li class="category-option">
+                        <label for="c4-mobile">Banheiro</label>
+                        <input type="checkbox" name="category" id="c4-mobile" value="banheiro">
+                    </li>
+                    <li class="category-option">
+                        <label for="c5-mobile">Quarto</label>
+                        <input type="checkbox" name="category" id="c5-mobile" value="quarto">
+                    </li>
+                    <li class="category-option">
+                        <label for="c6-mobile">Lazer</label>
+                        <input type="checkbox" name="category" id="c6-mobile" value="lazer">
+                    </li>
+                </ul>
+            </div>
+            <div class="filter-controls">
+                <h2>Filtro de preço:</h2>
+                <label for="price-range-mobile">Preços até: </label>
+                <input type="range" min="50" max="5000" value="5000" step="100" id="price-range-mobile" class="price-range-input">
+                <button class="btn btn-filter">Aplicar filtro</button>
+                <input type="reset" id="btn-clear-mobile" class="btn btn-clear" value="Limpar">
+            </div>
+        </form>
+    </div>
+    <div id="modal" class="modal hidden">
     <!--
         <div class="product-details">
             <span class="material-symbols-outlined" id="close-button">close</span>
