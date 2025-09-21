@@ -23,7 +23,7 @@ const filterIcon = document.querySelector("#filter-icon");
 const filterButtons = document.querySelectorAll(".btn-filter");
 const filterCleaners = document.querySelectorAll(".btn-clear");
 
-const productSection = document.querySelector("#product-section")
+const productSection = document.querySelector("#product-section");
 
 const modal = document.querySelector(".modal");
 const modalCloseDetails = document.querySelector("#close-details");
@@ -234,10 +234,12 @@ function openProductDetails(product){
     close.innerHTML = 'close';
     close.classList.add('material-symbols-outlined');
     close.addEventListener("click",()=>{
-        modal.classList.add('hidden');
+       closeProductDetails()
     });
+    title.classList.add('title');
     title.innerHTML = product.name;
 
+    productDetails.id = 'product-details';
     productDetails.classList.add('product-details');
     info.classList.add('info');
     header.classList.add('header');
@@ -293,6 +295,15 @@ function openProductDetails(product){
     });
 
     modal.appendChild(productDetails);
+    productDetails.classList.remove('product-details-closed');
+}
+
+function closeProductDetails(){
+    const productDetails = document.querySelector("#product-details");
+    productDetails.classList.add('product-details-closed');
+    setTimeout(()=>{
+        modal.classList.add('hidden'); 
+    }, 600);
 }
 
 function renderProduct(product){
@@ -344,6 +355,7 @@ function renderProduct(product){
     productCard.appendChild(productImg);
     productCard.appendChild(productDescr);
     productSection.appendChild(productCard);
+
 };
 
 hamburgerButton.addEventListener("click", ()=>{
@@ -417,7 +429,7 @@ priceRanges.forEach(input =>{ // atualiza o label ao arrastar o range
 
 modal.addEventListener("click", (event)=>{
     if(event.target === modal){
-        modal.style.display = 'none'; //oculta o modal apenas se o evento for acionado no fundo dele
+        closeProductDetails(); //oculta o modal apenas se o evento for acionado no fundo dele
     }
 });
 
