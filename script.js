@@ -1,4 +1,4 @@
-/*branch: fix-modal*/
+/*branch: master*/
 
 const menuMobile = document.querySelector("#menu-mobile");
 const searchIcon =  document.querySelector("#search-icon");

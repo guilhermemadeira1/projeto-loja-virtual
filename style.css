@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/*branch: fix-modal*/
+/*branch: master*/
 
 :root{
     --cor1: #464fce;
@@ -340,7 +340,7 @@ footer p{
     border-radius: 5px;
 }
 .product-details > .info > .data{
-    font-size: 1.1em;
+    font-size: 1em;
 }
 .product-details > .info > .data > .description{
     background-color: #ffffff;
